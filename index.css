@@ -1,0 +1,799 @@
+/* Design Tokens & Theme Variables */
+:root {
+  --bg-primary: #0a0e17;
+  --bg-secondary: rgba(20, 28, 45, 0.6);
+  --bg-tertiary: rgba(30, 41, 67, 0.4);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-color-hover: rgba(255, 255, 255, 0.15);
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  
+  /* Active dynamic color variables (controlled via JS based on flavor) */
+  --theme-color: #ff4757;
+  --theme-color-rgb: 255, 71, 87;
+  --theme-color-glow: rgba(255, 71, 87, 0.25);
+  
+  --sidebar-width: 380px;
+  --transition-speed: 0.3s;
+}
+
+/* Reset and Globals */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Ambient Backdrop Glow */
+.ambient-glow {
+  position: absolute;
+  top: -10%;
+  left: 20%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, var(--theme-color-glow) 0%, rgba(10, 14, 23, 0) 70%);
+  z-index: 0;
+  pointer-events: none;
+  transition: background var(--transition-speed) ease-in-out;
+}
+
+/* App Container Layout */
+.app-container {
+  display: flex;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* Sidebar / Control Panel Styling */
+.sidebar {
+  width: var(--sidebar-width);
+  background: rgba(10, 14, 23, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar-header {
+  padding: 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-bubble {
+  font-size: 28px;
+  width: 48px;
+  height: 48px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-area h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #ffffff, var(--theme-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background var(--transition-speed);
+}
+
+.logo-area p {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.control-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Scrollbar Customization */
+.control-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.control-scroll::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+.control-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--border-color-hover);
+}
+
+.control-group h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-group h2 i {
+  width: 16px;
+  height: 16px;
+  color: var(--theme-color);
+  transition: color var(--transition-speed);
+}
+
+/* Flavor Buttons Grid */
+.flavor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.flavor-btn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+}
+
+.flavor-btn .emoji {
+  font-size: 16px;
+}
+
+.flavor-btn:hover {
+  border-color: var(--flavor-color);
+  background: rgba(var(--theme-color-rgb), 0.05);
+  transform: translateY(-2px);
+}
+
+.flavor-btn.active {
+  background: var(--flavor-color);
+  border-color: var(--flavor-color);
+  box-shadow: 0 4px 15px rgba(var(--theme-color-rgb), 0.35);
+  color: #ffffff;
+}
+
+/* Dimension & State Toggles */
+.dimension-toggle, .state-toggle {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.state-toggle {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.dim-btn, .state-btn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 12px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.dim-btn .dim-title, .state-btn .state-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.dim-btn .dim-value, .state-btn .state-value {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.dim-btn:hover, .state-btn:hover {
+  border-color: var(--border-color-hover);
+  background: var(--bg-tertiary);
+}
+
+.dim-btn.active, .state-btn.active {
+  border-color: var(--theme-color);
+  background: rgba(var(--theme-color-rgb), 0.1);
+  box-shadow: inset 0 0 0 1px var(--theme-color);
+}
+
+/* Input Fields stack */
+.input-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-field label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input-field input {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text-main);
+  font-size: 13px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.input-field input:focus {
+  border-color: var(--theme-color);
+  box-shadow: 0 0 0 2px var(--theme-color-glow);
+}
+
+/* Actions and Footer styling */
+.sidebar-actions {
+  padding: 24px;
+  border-top: 1px solid var(--border-color);
+  background: rgba(10, 14, 23, 0.4);
+}
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--theme-color);
+  color: white;
+  box-shadow: 0 4px 15px var(--theme-color-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(var(--theme-color-rgb), 0.4);
+}
+
+.footer-note {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* Main Preview Area */
+.preview-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  background: radial-gradient(circle at center, rgba(16, 24, 48, 0.5) 0%, rgba(7, 10, 20, 0.9) 100%);
+}
+
+.stage-tabs {
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  z-index: 10;
+}
+
+.tab-btn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover {
+  color: var(--text-main);
+  border-color: var(--border-color-hover);
+}
+
+.tab-btn.active {
+  background: var(--theme-color);
+  color: white;
+  border-color: var(--theme-color);
+  box-shadow: 0 4px 12px var(--theme-color-glow);
+}
+
+.stage-content {
+  flex: 1;
+  position: relative;
+  min-height: 0; /* Important for flex child overflow */
+}
+
+.view-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.view-panel.active {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+/* 3D Container */
+.canvas-3d-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#three-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.stage-overlay {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.control-tips {
+  background: rgba(10, 14, 23, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 18px;
+  border-radius: 30px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.control-tips span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.control-tips i {
+  width: 14px;
+  height: 14px;
+}
+
+/* 2D Flat Design Canvas View */
+.flat-zoom-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  padding: 20px;
+}
+
+/* Realistic Label Wrapper with dynamic sizing proportions */
+.label-wrapper {
+  position: relative;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: width 0.3s ease, height 0.3s ease;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+}
+
+/* The Flat Label Card Body */
+.label-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Background Layer image inside the Label */
+.label-bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  transition: filter 0.4s ease;
+}
+
+/* Color Tint overlay to tie everything together */
+.label-overlay-tint {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(var(--theme-color-rgb), 0.12) 0%, rgba(var(--theme-color-rgb), 0.03) 70%, rgba(var(--theme-color-rgb), 0.2) 100%);
+  mix-blend-mode: multiply;
+  z-index: 2;
+  transition: background 0.4s ease;
+}
+
+/* Main 3-Panel Grid */
+.label-grid {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 27% 46% 27%; /* 3-fold bottle label layout */
+  background: rgba(255, 255, 255, 0.05); /* Slight white overlay for readability */
+}
+
+/* Folding Guides (Dotted lines for label fold references) */
+.label-grid > :not(:last-child) {
+  border-right: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.label-panel {
+  padding: 16px 12px;
+  color: #1e293b; /* Dark text for crisp printing */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* LEFT PANEL (Instructions, Warnings, Mfg details) */
+.panel-left {
+  font-size: 8px;
+  line-height: 1.3;
+}
+
+.panel-section {
+  margin-bottom: 8px;
+}
+
+.panel-section h3 {
+  font-size: 8px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.15);
+  padding-bottom: 1px;
+}
+
+.bottom-meta {
+  margin-top: auto;
+  border-top: 1px solid rgba(15, 23, 42, 0.1);
+  padding-top: 4px;
+}
+
+/* CENTER PANEL (Logo, Brand Title, Flavors) */
+.panel-center {
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  padding: 16px 8px;
+}
+
+.brand-header {
+  width: 100%;
+}
+
+.brand-header .tagline {
+  font-size: 7px;
+  font-weight: 700;
+  color: #334155;
+  letter-spacing: 1.5px;
+  display: block;
+}
+
+.brand-header h1 {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1.0;
+  color: #0f172a;
+  letter-spacing: -1px;
+  margin: 2px 0 4px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.brand-header .divider-line {
+  width: 60px;
+  height: 2px;
+  background: var(--theme-color);
+  margin: 0 auto 6px;
+  transition: background var(--transition-speed);
+}
+
+.brand-header .sub-type-desc {
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #475569;
+}
+
+/* Flavor Title Banner */
+.flavor-banner {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid var(--theme-color);
+  box-shadow: 0 4px 10px rgba(var(--theme-color-rgb), 0.15);
+  padding: 8px 16px;
+  border-radius: 30px;
+  transform: rotate(-1.5deg);
+  width: calc(100% - 10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition-speed);
+}
+
+.flavor-banner h2 {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: var(--theme-color);
+  text-shadow: none;
+  transition: color var(--transition-speed);
+  white-space: nowrap;
+}
+
+.center-footer {
+  width: 100%;
+}
+
+.center-footer .vibe-tag {
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #475569;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.volume-badge {
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  letter-spacing: 0.5px;
+  text-shadow: none;
+}
+
+/* RIGHT PANEL (Nutrition Facts Table, Barcode) */
+.panel-right {
+  font-size: 7px;
+  justify-content: space-between;
+}
+
+.nutrition-table {
+  border: 1px solid #0f172a;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 4px;
+}
+
+.nutri-header {
+  font-weight: 900;
+  font-size: 10px;
+  border-bottom: 2px solid #0f172a;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.nutri-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.nutri-row.sub-header {
+  font-size: 6px;
+  font-style: italic;
+  border-bottom: 2px solid #0f172a;
+}
+
+.nutri-row.indent span {
+  padding-left: 6px;
+}
+
+.nutri-row strong {
+  font-weight: 700;
+}
+
+.nutri-divider {
+  height: 3px;
+  background: #0f172a;
+}
+
+/* Barcode & Batch Details */
+.bottom-utility {
+  margin-top: auto;
+}
+
+.batch-exp {
+  display: flex;
+  justify-content: space-between;
+  font-size: 6px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #334155;
+}
+
+.barcode-area {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 2px;
+}
+
+.barcode-lines {
+  display: flex;
+  align-items: flex-end;
+  height: 18px;
+  width: 100%;
+  justify-content: space-around;
+  padding-bottom: 1px;
+}
+
+.barcode-lines span {
+  background: #000;
+  height: 100%;
+  display: block;
+}
+
+/* Creating varying line thickness for standard UPC-A barcodes */
+.barcode-lines span:nth-child(3n) { width: 1.5px; }
+.barcode-lines span:nth-child(4n) { width: 2px; }
+.barcode-lines span:nth-child(5n) { width: 0.5px; }
+.barcode-lines span:nth-child(even) { width: 1px; }
+
+.barcode-num {
+  font-size: 6px;
+  font-family: monospace;
+  color: #000000;
+  margin-top: 1px;
+}
+
+/* Loading Screen Spinner */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  gap: 16px;
+}
+
+.loading-screen.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--border-color);
+  border-top-color: var(--theme-color);
+  border-radius: 50%;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive UI adjustments */
+@media (max-width: 900px) {
+  .app-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    max-height: 40vh;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .preview-stage {
+    flex: 1;
+    height: 60vh;
+  }
+  
+  .stage-content {
+    height: 100%;
+  }
+}

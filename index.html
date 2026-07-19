@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C.I.P Drink Label Generator & 3D Previewer</title>
+  <!-- Google Fonts: Outfit for modern UI, Fredoka for bold tropical headers, Inter for details -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons for premium UI icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Three.js for 3D render -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Three.js OrbitControls -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <!-- Canvas to PDF/Image library (html2canvas) for downloading -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <!-- Background Ambient Glow -->
+  <div class="ambient-glow" id="ambient-glow"></div>
+
+  <div class="app-container">
+    <!-- Sidebar / Control Panel -->
+    <aside class="sidebar">
+      <header class="sidebar-header">
+        <div class="logo-area">
+          <span class="icon-bubble">🍹</span>
+          <div>
+            <h1>C.I.P Studio</h1>
+            <p>Drink Label Designer</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="control-scroll">
+        <!-- Section: Flavor Selection -->
+        <section class="control-group">
+          <h2><i data-lucide="droplet"></i> Select Flavor</h2>
+          <div class="flavor-grid">
+            <button class="flavor-btn active" data-flavor="strawberry" style="--flavor-color: #ff4757;">
+              <span class="emoji">🍓</span> Strawberry
+            </button>
+            <button class="flavor-btn" data-flavor="grape" style="--flavor-color: #8c7ae6;">
+              <span class="emoji">🍇</span> Grape
+            </button>
+            <button class="flavor-btn" data-flavor="cherry" style="--flavor-color: #d63031;">
+              <span class="emoji">🍒</span> Cherry
+            </button>
+            <button class="flavor-btn" data-flavor="pineapple" style="--flavor-color: #eccc68;">
+              <span class="emoji">🍍</span> Pineapple
+            </button>
+            <button class="flavor-btn" data-flavor="mango" style="--flavor-color: #ffa502;">
+              <span class="emoji">🥭</span> Mango
+            </button>
+            <button class="flavor-btn" data-flavor="fruit_punch" style="--flavor-color: #ff6b81;">
+              <span class="emoji">🍹</span> Fruit Punch
+            </button>
+            <button class="flavor-btn" data-flavor="kola_champagne" style="--flavor-color: #ff7f50;">
+              <span class="emoji">🍾</span> Kola Champagne
+            </button>
+            <button class="flavor-btn" data-flavor="sorrel_ginger" style="--flavor-color: #b33939;">
+              <span class="emoji">🌺</span> Sorrel & Ginger
+            </button>
+          </div>
+        </section>
+
+        <!-- Section: Label Dimensions -->
+        <section class="control-group">
+          <h2><i data-lucide="maximize-2"></i> Label Dimensions</h2>
+          <div class="dimension-toggle">
+            <button class="dim-btn active" data-w="9" data-h="16">
+              <span class="dim-title">Standard</span>
+              <span class="dim-value">9 x 16 cm</span>
+            </button>
+            <button class="dim-btn" data-w="7" data-h="15">
+              <span class="dim-title">Slim</span>
+              <span class="dim-value">7 x 15 cm</span>
+            </button>
+            <button class="dim-btn" data-w="12" data-h="20">
+              <span class="dim-title">Large</span>
+              <span class="dim-value">12 x 20 cm</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Section: Bottle Type / Dilution -->
+        <section class="control-group">
+          <h2><i data-lucide="flask-conical"></i> Bottle State</h2>
+          <div class="state-toggle">
+            <button class="state-btn active" data-state="undiluted" data-volume="50ml">
+              <span class="state-title">50ml Undiluted</span>
+              <span class="state-value">Syrup Concentrate</span>
+            </button>
+            <button class="state-btn" data-state="diluted" data-volume="300ml">
+              <span class="state-title">300ml Diluted</span>
+              <span class="state-value">Ready to Drink Mix</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Section: Custom Labels & Text -->
+        <section class="control-group">
+          <h2><i data-lucide="edit-3"></i> Label Details</h2>
+          <div class="input-stack">
+            <div class="input-field">
+              <label for="brand-name">Brand Logo Text</label>
+              <input type="text" id="brand-name" value="C.I.P" placeholder="Brand Name">
+            </div>
+            <div class="input-field">
+              <label for="sub-type">Product Subtype</label>
+              <input type="text" id="sub-type" value="SYRUP FLAVOUR CONCENTRATE MIX" placeholder="Product Type">
+            </div>
+            <div class="input-field">
+              <label for="batch-no">Batch Number</label>
+              <input type="text" id="batch-no" value="B-EXP772" placeholder="Batch No.">
+            </div>
+            <div class="input-field">
+              <label for="expiry-date">Expiry Date</label>
+              <input type="text" id="expiry-date" value="12 / 2028" placeholder="Expiry Date">
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Action Panel -->
+      <footer class="sidebar-actions">
+        <button class="btn btn-primary" id="download-btn">
+          <i data-lucide="download"></i> Download Print Label (PNG)
+        </button>
+        <div class="footer-note">
+          Designed for 300 DPI high-quality output.
+        </div>
+      </footer>
+    </aside>
+
+    <!-- Main Preview Stage -->
+    <main class="preview-stage">
+      <div class="stage-tabs">
+        <button class="tab-btn active" data-tab="preview-3d">
+          <i data-lucide="rotate-3d"></i> 3D Bottle View
+        </button>
+        <button class="tab-btn" data-tab="preview-2d">
+          <i data-lucide="file-image"></i> 2D Flat Design
+        </button>
+      </div>
+
+      <!-- Stage Views Container -->
+      <div class="stage-content">
+        <!-- 3D Bottle View -->
+        <div class="view-panel active" id="panel-3d">
+          <div class="canvas-3d-wrapper">
+            <div id="three-container"></div>
+            <!-- Instruction overlay -->
+            <div class="stage-overlay">
+              <div class="control-tips">
+                <span><i data-lucide="mouse-pointer"></i> Drag to rotate</span>
+                <span><i data-lucide="move"></i> Scroll to zoom</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2D flat view -->
+        <div class="view-panel" id="panel-2d">
+          <div class="flat-zoom-container">
+            <!-- The label container is styled dynamically to match ratios -->
+            <div class="label-wrapper" id="label-canvas-container">
+              <!-- Label Content (designed to look ultra-premium) -->
+              <div class="label-card" id="label-card-content">
+                <!-- Tropical background decoration -->
+                <div class="label-bg-layer" id="label-bg-layer"></div>
+                <div class="label-overlay-tint"></div>
+
+                <!-- Label Content Grid (3 Panels: Left Info, Center Front, Right Details) -->
+                <div class="label-grid">
+                  <!-- LEFT PANEL: Instructions & Manufacturing -->
+                  <div class="label-panel panel-left">
+                    <div class="panel-section">
+                      <h3>PREPARATION</h3>
+                      <p id="label-directions">Mix 1 part C.I.P Concentrate with 5 parts chilled water. Stir well. Serve over ice with fresh fruit garnish.</p>
+                    </div>
+                    <div class="panel-section">
+                      <h3>INGREDIENTS</h3>
+                      <p>High fructose corn syrup, filtered water, citric acid, natural and artificial flavors, sodium benzoate (preservative), cloudifying agent, FD&C color.</p>
+                    </div>
+                    <div class="panel-section bottom-meta">
+                      <p><strong>MFG By:</strong> C.I.P Tropical Labs Inc.</p>
+                      <p>Product of the Caribbean Vibes</p>
+                    </div>
+                  </div>
+
+                  <!-- CENTER PANEL: Hero Front Cover -->
+                  <div class="label-panel panel-center">
+                    <div class="brand-header">
+                      <span class="tagline">★ PREMIUM QUALITY ★</span>
+                      <h1 id="label-brand-name">C.I.P</h1>
+                      <div class="divider-line"></div>
+                      <p id="label-sub-type" class="sub-type-desc">SYRUP FLAVOUR CONCENTRATE MIX</p>
+                    </div>
+
+                    <div class="flavor-banner">
+                      <h2 id="label-flavor-title">STRAWBERRY</h2>
+                    </div>
+
+                    <div class="center-footer">
+                      <span class="vibe-tag">FRESH SUMMER VIBES</span>
+                      <div class="volume-badge" id="label-volume">50ML (UNDILUTED)</div>
+                    </div>
+                  </div>
+
+                  <!-- RIGHT PANEL: Nutrition, Barcode, Batch -->
+                  <div class="label-panel panel-right">
+                    <div class="nutrition-table">
+                      <div class="nutri-header">NUTRITION FACTS</div>
+                      <div class="nutri-row sub-header">Serving Size: 1 fl oz (30ml)</div>
+                      <div class="nutri-divider"></div>
+                      <div class="nutri-row"><span>Calories</span> <strong>80</strong></div>
+                      <div class="nutri-row"><span>Total Fat 0g</span> <strong>0%</strong></div>
+                      <div class="nutri-row"><span>Sodium 15mg</span> <strong>1%</strong></div>
+                      <div class="nutri-row"><span>Total Carb 21g</span> <strong>8%</strong></div>
+                      <div class="nutri-row indent"><span>Sugars 20g</span></div>
+                      <div class="nutri-row"><span>Protein 0g</span> <strong>0%</strong></div>
+                    </div>
+
+                    <div class="bottom-utility">
+                      <div class="batch-exp">
+                        <div>Batch: <span id="label-batch-val">B-EXP772</span></div>
+                        <div>Expiry: <span id="label-exp-val">12/2028</span></div>
+                      </div>
+                      <div class="barcode-area">
+                        <div class="barcode-lines">
+                          <span></span><span></span><span></span><span></span><span></span><span></span>
+                          <span></span><span></span><span></span><span></span><span></span><span></span>
+                          <span></span><span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <span class="barcode-num">7 12345 67890 9</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Loading State Indicator -->
+  <div class="loading-screen" id="loading-screen">
+    <div class="spinner"></div>
+    <p>Loading Summer Vibes...</p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
