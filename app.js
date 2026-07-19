@@ -12,6 +12,7 @@ const state = {
   volumeVal: '50ML',
   brandName: 'C.I.P',
   subType: 'SYRUP FLAVOUR CONCENTRATE MIX',
+  ingredients: 'Cane sugar, Water, Flavourings, Aciditity Regulator: Citric Acid, Colour: E122, Preservative: E211.',
   batchNo: 'B-EXP772',
   expiryDate: '12 / 2028',
   activeTab: 'preview-3d'
@@ -122,6 +123,7 @@ const brandInput = document.getElementById('brand-name');
 const subTypeInput = document.getElementById('sub-type');
 const batchInput = document.getElementById('batch-no');
 const expiryInput = document.getElementById('expiry-date');
+const ingredientsInput = document.getElementById('ingredients');
 const downloadBtn = document.getElementById('download-btn');
 const loadingScreen = document.getElementById('loading-screen');
 const ambientGlow = document.getElementById('ambient-glow');
@@ -133,6 +135,7 @@ const labelBrandName = document.getElementById('label-brand-name');
 const labelSubType = document.getElementById('label-sub-type');
 const labelFlavorTitle = document.getElementById('label-flavor-title');
 const labelDirections = document.getElementById('label-directions');
+const labelIngredients = document.getElementById('label-ingredients');
 const labelVolume = document.getElementById('label-volume');
 const labelBatchVal = document.getElementById('label-batch-val');
 const labelExpVal = document.getElementById('label-exp-val');
@@ -225,6 +228,12 @@ function initEventListeners() {
     triggerLabelTextureUpdate();
   });
 
+  ingredientsInput.addEventListener('input', (e) => {
+    state.ingredients = e.target.value || ' ';
+    labelIngredients.textContent = state.ingredients;
+    triggerLabelTextureUpdate();
+  });
+
   // Tabs switching
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -290,6 +299,7 @@ function updateUI() {
   
   labelBatchVal.textContent = state.batchNo;
   labelExpVal.textContent = state.expiryDate;
+  labelIngredients.textContent = state.ingredients;
 
   // 4. Update the Label aspect ratio container dimensions (scaled to fit screen beautifully)
   // Base scale: 1cm physical = 25px flat rendering

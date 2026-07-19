@@ -255,7 +255,7 @@ body {
   letter-spacing: 0.5px;
 }
 
-.input-field input {
+.input-field input, .input-field textarea {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -264,9 +264,15 @@ body {
   font-size: 13px;
   outline: none;
   transition: all 0.2s;
+  font-family: inherit;
 }
 
-.input-field input:focus {
+.input-field textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+.input-field input:focus, .input-field textarea:focus {
   border-color: var(--theme-color);
   box-shadow: 0 0 0 2px var(--theme-color-glow);
 }
