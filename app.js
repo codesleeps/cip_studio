@@ -27,8 +27,8 @@ const flavorsConfig = {
     rgb: '255, 71, 87',
     liquidColor: 0x9c0c16, // Rich dark red for syrup concentrate
     liquidColorDiluted: 0xff3b30, // Bright translucent red
-    primaryImg: 'assets/berries_grapes_splash.jpg',
-    fallbackImg: '../../brain/2b961f81-fd27-4bda-84f3-64350e7d01af/berries_grapes_splash_1784462830439.jpg',
+    primaryImg: 'assets/strawberry_splash.png',
+    fallbackImg: 'assets/berries_grapes_splash.jpg',
     directionsUndiluted: 'Mix 1 part C.I.P Strawberry Concentrate with 5 parts chilled carbonated water. Stir well. Serve over ice with fresh strawberries.',
     directionsDiluted: 'Ready to drink. Serve chilled. Shake well before opening. Keep refrigerated after opening.'
   },
@@ -39,8 +39,8 @@ const flavorsConfig = {
     rgb: '140, 122, 230',
     liquidColor: 0x481f5c, // Deep grape purple
     liquidColorDiluted: 0x7030a0, // Royal purple translucent
-    primaryImg: 'assets/berries_grapes_splash.jpg',
-    fallbackImg: '../../brain/2b961f81-fd27-4bda-84f3-64350e7d01af/berries_grapes_splash_1784462830439.jpg',
+    primaryImg: 'assets/grape_splash.png',
+    fallbackImg: 'assets/berries_grapes_splash.jpg',
     directionsUndiluted: 'Mix 1 part C.I.P Grape Concentrate with 5 parts water. Serve cold over crushed ice.',
     directionsDiluted: 'Ready to drink. Delicious grape flavor mix. Serve ice-cold.'
   },
@@ -51,8 +51,8 @@ const flavorsConfig = {
     rgb: '214, 48, 49',
     liquidColor: 0x6e0000, // Crimson red
     liquidColorDiluted: 0xbd0000, // Cherry red
-    primaryImg: 'assets/berries_grapes_splash.jpg',
-    fallbackImg: '../../brain/2b961f81-fd27-4bda-84f3-64350e7d01af/berries_grapes_splash_1784462830439.jpg',
+    primaryImg: 'assets/cherry_splash.png',
+    fallbackImg: 'assets/berries_grapes_splash.jpg',
     directionsUndiluted: 'Mix 1 part C.I.P Cherry Concentrate with 5 parts cold water. Perfect for punch bowls and mocktails.',
     directionsDiluted: 'Ready to drink. Crisp and sweet cherry flavor. Best served chilled.'
   },
@@ -63,8 +63,8 @@ const flavorsConfig = {
     rgb: '236, 204, 104',
     liquidColor: 0xb58900, // Golden yellow-brown syrup
     liquidColorDiluted: 0xffd13b, // Translucent bright yellow
-    primaryImg: 'assets/tropical_fruits_splash.jpg',
-    fallbackImg: '../../brain/2b961f81-fd27-4bda-84f3-64350e7d01af/tropical_fruits_splash_1784462815273.jpg',
+    primaryImg: 'assets/pineapple_splash.png',
+    fallbackImg: 'assets/tropical_fruits_splash.jpg',
     directionsUndiluted: 'Mix 1 part C.I.P Pineapple Concentrate with 5 parts chilled water. Serve with a slice of fresh pineapple.',
     directionsDiluted: 'Ready to drink. Tropical pineapple refresh. Best served chilled over ice.'
   },
@@ -75,8 +75,8 @@ const flavorsConfig = {
     rgb: '255, 165, 2',
     liquidColor: 0xb56b00, // Rich amber mango pulp syrup
     liquidColorDiluted: 0xffa500, // Translucent mango orange
-    primaryImg: 'assets/tropical_fruits_splash.jpg',
-    fallbackImg: '../../brain/2b961f81-fd27-4bda-84f3-64350e7d01af/tropical_fruits_splash_1784462815273.jpg',
+    primaryImg: 'assets/mango_splash.png',
+    fallbackImg: 'assets/tropical_fruits_splash.jpg',
     directionsUndiluted: 'Mix 1 part C.I.P Mango Concentrate with 5 parts cold water. Blend with ice for a tropical mango slushy.',
     directionsDiluted: 'Ready to drink. Indulgent mango nectar flavor. Shake well, serve cold.'
   },
@@ -87,8 +87,8 @@ const flavorsConfig = {
     rgb: '255, 107, 129',
     liquidColor: 0x9e1233, // Deep tropical ruby red
     liquidColorDiluted: 0xe11d48, // Vibrant punch red
-    primaryImg: 'assets/tropical_fruits_splash.jpg',
-    fallbackImg: '../../brain/2b961f81-fd27-4bda-84f3-64350e7d01af/tropical_fruits_splash_1784462815273.jpg',
+    primaryImg: 'assets/fruit_punch_splash.png',
+    fallbackImg: 'assets/tropical_fruits_splash.jpg',
     directionsUndiluted: 'Mix 1 part C.I.P Fruit Punch with 5 parts cold ginger ale or water. Garnish with lime slices.',
     directionsDiluted: 'Ready to drink. The ultimate tropical fruit punch. Serve chilled.'
   },
@@ -99,8 +99,8 @@ const flavorsConfig = {
     rgb: '255, 127, 80',
     liquidColor: 0xa8470a, // Rich amber kola syrup
     liquidColorDiluted: 0xff8c00, // Golden champagne amber
-    primaryImg: 'assets/tropical_fruits_splash.jpg',
-    fallbackImg: '../../brain/2b961f81-fd27-4bda-84f3-64350e7d01af/tropical_fruits_splash_1784462815273.jpg',
+    primaryImg: 'assets/kola_champagne_splash.png',
+    fallbackImg: 'assets/tropical_fruits_splash.jpg',
     directionsUndiluted: 'Mix 1 part C.I.P Kola Champagne Concentrate with 5 parts sparkling club soda for that classic Caribbean taste.',
     directionsDiluted: 'Ready to drink. Sweet, sparkling-style kola champagne mix. Serve ice-cold.'
   },
@@ -111,8 +111,8 @@ const flavorsConfig = {
     rgb: '179, 57, 57',
     liquidColor: 0x4a0e17, // Very dark burgundy hibiscus syrup
     liquidColorDiluted: 0x8a1529, // Deep sorrel red
-    primaryImg: 'assets/sorrel_ginger_splash.jpg',
-    fallbackImg: '../../brain/2b961f81-fd27-4bda-84f3-64350e7d01af/sorrel_ginger_splash_1784462846341.jpg',
+    primaryImg: 'assets/sorrel_ginger_splash.png',
+    fallbackImg: 'assets/sorrel_ginger_splash.jpg',
     directionsUndiluted: 'Mix 1 part C.I.P Sorrel & Ginger Concentrate with 5 parts water. Spice up with rum if desired. Serve cold.',
     directionsDiluted: 'Ready to drink. Spiced hibiscus sorrel and hot ginger blend. Serve chilled.'
   }
@@ -398,7 +398,7 @@ function initThree() {
 
   // Camera
   camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-  camera.position.set(0, 1.2, 9);
+  camera.position.set(0, 1.175, 9.5);
 
   // Renderer
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -410,6 +410,7 @@ function initThree() {
 
   // Controls
   orbitControls = new THREE.OrbitControls(camera, renderer.domElement);
+  orbitControls.target.set(0, 1.175, 0);
   orbitControls.enableDamping = true;
   orbitControls.dampingFactor = 0.05;
   orbitControls.maxPolarAngle = Math.PI / 2 + 0.15; // Don't look too far under the table
@@ -418,6 +419,7 @@ function initThree() {
   // Slow auto-rotation for premium product display
   orbitControls.autoRotate = true;
   orbitControls.autoRotateSpeed = 1.0;
+  orbitControls.update();
 
   // Lights
   // 1. Warm tropical sunshine keylight
