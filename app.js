@@ -277,9 +277,17 @@ function updateUI() {
     triggerLabelTextureUpdate();
   };
   imgObj.onerror = () => {
-    // If primary local assets/ path fails, fall back to relative brain path
-    labelBgLayer.style.backgroundImage = `url('${cfg.fallbackImg}')`;
-    triggerLabelTextureUpdate();
+    // If primary local assets/ path fails, fall back to fallback image
+    const fallbackObj = new Image();
+    fallbackObj.onload = () => {
+      labelBgLayer.style.backgroundImage = `url('${fallbackObj.src}')`;
+      triggerLabelTextureUpdate();
+    };
+    fallbackObj.onerror = () => {
+      labelBgLayer.style.backgroundImage = 'none';
+      triggerLabelTextureUpdate();
+    };
+    fallbackObj.src = cfg.fallbackImg;
   };
   imgObj.src = cfg.primaryImg;
 
