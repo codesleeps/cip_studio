@@ -47,6 +47,7 @@ const flavorsConfig = {
   cherry: {
     name: 'CHERRY',
     emoji: '🍒',
+
     color: '#d63031',
     rgb: '214, 48, 49',
     liquidColor: 0x6e0000, // Crimson red
@@ -153,10 +154,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Setup Event Listeners
   initEventListeners();
-  
+
   // Set Initial Flavor & Dimensions UI
   updateUI();
-  
+
   // Initialize 3D Engine
   initThree();
 
@@ -209,19 +210,19 @@ function initEventListeners() {
     labelBrandName.textContent = state.brandName;
     triggerLabelTextureUpdate();
   });
-  
+
   subTypeInput.addEventListener('input', (e) => {
     state.subType = e.target.value || ' ';
     labelSubType.textContent = state.subType;
     triggerLabelTextureUpdate();
   });
-  
+
   batchInput.addEventListener('input', (e) => {
     state.batchNo = e.target.value || ' ';
     labelBatchVal.textContent = state.batchNo;
     triggerLabelTextureUpdate();
   });
-  
+
   expiryInput.addEventListener('input', (e) => {
     state.expiryDate = e.target.value || ' ';
     labelExpVal.textContent = state.expiryDate;
@@ -241,7 +242,7 @@ function initEventListeners() {
       const activeBtn = e.target.closest('.tab-btn');
       activeBtn.classList.add('active');
       state.activeTab = activeBtn.dataset.tab;
-      
+
       document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
       if (state.activeTab === 'preview-3d') {
         document.getElementById('panel-3d').classList.add('active');
@@ -264,12 +265,12 @@ function initEventListeners() {
 // Update the Label design and colors based on Current State
 function updateUI() {
   const cfg = flavorsConfig[state.flavor];
-  
+
   // 1. Update CSS Dynamic Theme Variables
   document.documentElement.style.setProperty('--theme-color', cfg.color);
   document.documentElement.style.setProperty('--theme-color-rgb', cfg.rgb);
   document.documentElement.style.setProperty('--theme-color-glow', `rgba(${cfg.rgb}, 0.25)`);
-  
+
   // 2. Set Background image with robust loading error fallback
   const imgObj = new Image();
   imgObj.onload = () => {
@@ -287,7 +288,7 @@ function updateUI() {
   labelBrandName.textContent = state.brandName;
   labelSubType.textContent = state.subType;
   labelFlavorTitle.textContent = cfg.name;
-  
+
   // Instructions based on Diluted / Undiluted state
   if (state.volumeState === 'undiluted') {
     labelDirections.textContent = cfg.directionsUndiluted;
@@ -296,7 +297,7 @@ function updateUI() {
     labelDirections.textContent = cfg.directionsDiluted;
     labelVolume.textContent = `${state.volumeVal} (DILUTED)`;
   }
-  
+
   labelBatchVal.textContent = state.batchNo;
   labelExpVal.textContent = state.expiryDate;
   labelIngredients.textContent = state.ingredients;
@@ -311,7 +312,7 @@ function updateUI() {
   // Let's set dimensions of the 2D layout based on cm:
   const targetWidthPx = state.widthCm * 2.5 * scale;
   const targetHeightPx = state.heightCm * scale;
-  
+
   labelCanvasContainer.style.width = `${targetWidthPx}px`;
   labelCanvasContainer.style.height = `${targetHeightPx}px`;
 
@@ -337,7 +338,7 @@ function updateUI() {
 let textureUpdateTimeout = null;
 function triggerLabelTextureUpdate() {
   if (!threeInitialized) return;
-  
+
   // Throttle texture updates to avoid lag on input keypresses
   clearTimeout(textureUpdateTimeout);
   textureUpdateTimeout = setTimeout(() => {
@@ -348,7 +349,7 @@ function triggerLabelTextureUpdate() {
 // HTML2Canvas helper to map DOM element to Three.js texture
 function updateThreeLabelTexture() {
   const target = document.getElementById('label-card-content');
-  
+
   // Temporary style updates to render html2canvas nicely (no drop-shadow offsets)
   const originalShadow = target.style.boxShadow;
   target.style.boxShadow = 'none';
@@ -361,17 +362,17 @@ function updateThreeLabelTexture() {
     logging: false
   }).then(canvas => {
     target.style.boxShadow = originalShadow;
-    
+
     if (labelTexture) {
       labelTexture.dispose();
     }
-    
+
     // Create new texture from the canvas
     labelTexture = new THREE.CanvasTexture(canvas);
     labelTexture.wrapS = THREE.ClampToEdgeWrapping;
     labelTexture.wrapT = THREE.ClampToEdgeWrapping;
     labelTexture.minFilter = THREE.LinearFilter;
-    
+
     if (labelMesh) {
       labelMesh.material.map = labelTexture;
       labelMesh.material.needsUpdate = true;
@@ -444,10 +445,10 @@ function initThree() {
   buildBottleModel();
 
   threeInitialized = true;
-  
+
   // Set initial colors
   updateThreeMaterials();
-  
+
   // Perform first label texture capture
   setTimeout(updateThreeLabelTexture, 500);
 
@@ -553,7 +554,7 @@ function buildBottleModel() {
   const labelGeo = new THREE.CylinderGeometry(1.61, 1.61, 3.2, 48, 1, true, 0, Math.PI * 1.65);
   labelMesh = new THREE.Mesh(labelGeo, labelMat);
   // Orient the label so it faces the camera by default
-  labelMesh.rotation.y = -Math.PI * 1.65 / 2; 
+  labelMesh.rotation.y = -Math.PI * 1.65 / 2;
   labelMesh.position.y = 1.9;
   bottleGroup.add(labelMesh);
 }
@@ -561,7 +562,7 @@ function buildBottleModel() {
 // Update Three.js liquid color and cap styling dynamically based on state
 function updateThreeMaterials() {
   const cfg = flavorsConfig[state.flavor];
-  
+
   if (scene) {
     scene.traverse(node => {
       if (node.isMesh && node.material) {
@@ -571,7 +572,7 @@ function updateThreeMaterials() {
           node.material.color.setHex(hexCol);
           node.material.needsUpdate = true;
         }
-        
+
         // Match cap style (e.g. golden/black or matching color code)
         if (node.material.name === 'capMat') {
           // Let's use a gorgeous gold metal for undiluted premium syrup, 
@@ -588,7 +589,7 @@ function updateThreeMaterials() {
       }
     });
   }
-  
+
   // Adjust Label mesh size on bottle depending on dimension selections
   if (labelMesh) {
     // 9x16cm -> height scale 1.0 (standard height)
@@ -596,7 +597,7 @@ function updateThreeMaterials() {
     // 12x20cm -> height scale 1.15 (taller coverage)
     let heightScale = 1.0;
     let radiusScale = 1.0;
-    
+
     if (state.widthCm === 7 && state.heightCm === 15) {
       heightScale = 0.88;
       // Slim label wraps slightly less circumference
@@ -605,7 +606,7 @@ function updateThreeMaterials() {
       heightScale = 1.15;
       radiusScale = 1.05;
     }
-    
+
     labelMesh.scale.set(1, heightScale, 1);
     labelMesh.position.y = 1.9; // keep centered on cylinder body
   }
@@ -614,11 +615,11 @@ function updateThreeMaterials() {
 // Render loop
 function animate() {
   requestAnimationFrame(animate);
-  
+
   if (orbitControls) {
     orbitControls.update();
   }
-  
+
   if (renderer && scene && camera) {
     renderer.render(scene, camera);
   }
@@ -649,14 +650,14 @@ function exportLabelAsPNG() {
 
   // Temporarily switch tabs to 2D view to ensure it renders correctly
   const prevTab = state.activeTab;
-  
+
   // Force 2D flat panel render active
   document.getElementById('panel-3d').classList.remove('active');
   document.getElementById('panel-2d').classList.add('active');
-  
+
   setTimeout(() => {
     const target = document.getElementById('label-card-content');
-    
+
     // Temporarily hide dotted fold lines for download
     document.querySelectorAll('.label-grid > :not(:last-child)').forEach(el => {
       el.style.borderRight = 'none';
