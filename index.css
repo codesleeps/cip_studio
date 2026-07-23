@@ -255,9 +255,65 @@ body {
   letter-spacing: 0.5px;
 }
 
-.input-field input, .input-field textarea {
+.input-field input, .input-field textarea, .select-field {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text-main);
+  font-family: var(--font-family);
+  font-size: 13px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.select-field option {
+  background: #0f172a;
+  color: #fff;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slider-val {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--theme-color);
+}
+
+.range-slider {
+  accent-color: var(--theme-color);
+  cursor: pointer;
+  height: 6px;
+}
+
+.color-field {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.color-picker {
+  -webkit-appearance: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.color-picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-picker::-webkit-color-swatch {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
   border-radius: 8px;
   padding: 10px 14px;
   color: var(--text-main);

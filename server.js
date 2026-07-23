@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 8080;
+const PORT = 3000;
 
 const MIME_TYPES = {
   '.html': 'text/html',
@@ -44,6 +44,6 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
+server.listen(PORT, '127.0.0.1', () => {
+  console.log(`Server running at http://127.0.0.1:${PORT}/`);
 });

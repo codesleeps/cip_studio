@@ -235,6 +235,47 @@ function initEventListeners() {
     triggerLabelTextureUpdate();
   });
 
+  // Typography controls
+  const fontFamilySelect = document.getElementById('font-family');
+  const brandFontSizeInput = document.getElementById('brand-font-size');
+  const brandSizeVal = document.getElementById('brand-size-val');
+  const flavorFontSizeInput = document.getElementById('flavor-font-size');
+  const flavorSizeVal = document.getElementById('flavor-size-val');
+  const brandColorInput = document.getElementById('brand-color');
+
+  if (fontFamilySelect) {
+    fontFamilySelect.addEventListener('change', (e) => {
+      labelBrandName.style.fontFamily = e.target.value;
+      labelFlavorTitle.style.fontFamily = e.target.value;
+      triggerLabelTextureUpdate();
+    });
+  }
+
+  if (brandFontSizeInput) {
+    brandFontSizeInput.addEventListener('input', (e) => {
+      const val = `${e.target.value}rem`;
+      if (brandSizeVal) brandSizeVal.textContent = val;
+      labelBrandName.style.fontSize = val;
+      triggerLabelTextureUpdate();
+    });
+  }
+
+  if (flavorFontSizeInput) {
+    flavorFontSizeInput.addEventListener('input', (e) => {
+      const val = `${e.target.value}rem`;
+      if (flavorSizeVal) flavorSizeVal.textContent = val;
+      labelFlavorTitle.style.fontSize = val;
+      triggerLabelTextureUpdate();
+    });
+  }
+
+  if (brandColorInput) {
+    brandColorInput.addEventListener('input', (e) => {
+      labelBrandName.style.color = e.target.value;
+      triggerLabelTextureUpdate();
+    });
+  }
+
   // Tabs switching
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
