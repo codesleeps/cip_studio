@@ -314,16 +314,21 @@ function updateUI() {
 
   // 2. Set Background image with robust loading error fallback
   const imgObj = new Image();
+  // Debug: show which image path we are trying to load
+  console.log('Loading label background image:', cfg.primaryImg);
   imgObj.onload = () => {
     labelBgLayer.style.backgroundImage = `url('${imgObj.src}')`;
     triggerLabelTextureUpdate();
   };
   imgObj.onerror = () => {
-    // If primary local assets/ path fails, fall back to relative brain path
+    console.warn('Primary image failed, falling back to', cfg.fallbackImg);
     labelBgLayer.style.backgroundImage = `url('${cfg.fallbackImg}')`;
     triggerLabelTextureUpdate();
   };
-  imgObj.src = cfg.primaryImg;
+  // When the page is opened via file://, relative URLs may resolve incorrectly.
+  // Build an absolute file URL based on the current location.
+  const basePath = location.protocol === 'file:' ? location.pathname.replace(/index\.html$/, '') : '';
+  imgObj.src = basePath + cfg.primaryImg;
 
   // 3. Update Text Content inside the 2D label DOM
   labelBrandName.textContent = state.brandName;
