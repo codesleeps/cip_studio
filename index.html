@@ -10,10 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Lucide Icons for premium UI icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Three.js for 3D render -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <!-- Three.js OrbitControls -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <!-- Canvas to PDF/Image library (html2canvas) for downloading -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <link rel="stylesheet" href="index.css">
@@ -178,30 +174,14 @@
     <!-- Main Preview Stage -->
     <main class="preview-stage">
       <div class="stage-tabs">
-        <button class="tab-btn active" data-tab="preview-3d">
-          <i data-lucide="rotate-3d"></i> 3D Bottle View
-        </button>
-        <button class="tab-btn" data-tab="preview-2d">
+
+        <button class="tab-btn active" data-tab="preview-2d">
           <i data-lucide="file-image"></i> 2D Flat Design
         </button>
       </div>
 
       <!-- Stage Views Container -->
       <div class="stage-content">
-        <!-- 3D Bottle View -->
-        <div class="view-panel active" id="panel-3d">
-          <div class="canvas-3d-wrapper">
-            <div id="three-container"></div>
-            <!-- Instruction overlay -->
-            <div class="stage-overlay">
-              <div class="control-tips">
-                <span><i data-lucide="mouse-pointer"></i> Drag to rotate</span>
-                <span><i data-lucide="move"></i> Scroll to zoom</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- 2D flat view -->
         <div class="view-panel" id="panel-2d">
           <div class="flat-zoom-container">
