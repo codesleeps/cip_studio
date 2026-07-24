@@ -321,10 +321,10 @@ function updateUI() {
     triggerLabelTextureUpdate();
   };
   imgObj.onerror = () => {
-    console.warn('Primary image failed, falling back to', cfg.fallbackImg);
-    labelBgLayer.style.backgroundImage = `url('${cfg.fallbackImg}')`;
-    triggerLabelTextureUpdate();
-  };
+  console.warn('Primary image failed, falling back to', cfg.fallbackImg);
+  labelBgLayer.style.backgroundImage = `url('${cfg.fallbackImg}')`;
+  triggerLabelTextureUpdate();
+};
   // When the page is opened via file://, relative URLs may resolve incorrectly.
   // Build an absolute file URL based on the current location.
   const basePath = location.protocol === 'file:' ? location.pathname.replace(/index\.html$/, '') : '';
