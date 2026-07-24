@@ -27,8 +27,8 @@ const flavorsConfig = {
     rgb: '255, 71, 87',
     liquidColor: 0x9c0c16, // Rich dark red for syrup concentrate
     liquidColorDiluted: 0xff3b30, // Bright translucent red
-    primaryImg: 'assets/strawberry_splash.png',
-    fallbackImg: 'assets/berries_grapes_splash.jpg',
+    primaryImg: 'assets/strawberry_flavor_bg_1784850151796.png',
+    fallbackImg: 'assets/strawberry_flavor_bg_1784850151796.png',
     directionsUndiluted: 'Mix 1 part C.I.P Strawberry Concentrate with 5 parts chilled carbonated water. Stir well. Serve over ice with fresh strawberries.',
     directionsDiluted: 'Ready to drink. Serve chilled. Shake well before opening. Keep refrigerated after opening.'
   },
@@ -39,8 +39,8 @@ const flavorsConfig = {
     rgb: '140, 122, 230',
     liquidColor: 0x481f5c, // Deep grape purple
     liquidColorDiluted: 0x7030a0, // Royal purple translucent
-    primaryImg: 'assets/grape_splash.png',
-    fallbackImg: 'assets/berries_grapes_splash.jpg',
+    primaryImg: 'assets/grape_flavor_bg_1784850183216.png',
+    fallbackImg: 'assets/grape_flavor_bg_1784850183216.png',
     directionsUndiluted: 'Mix 1 part C.I.P Grape Concentrate with 5 parts water. Serve cold over crushed ice.',
     directionsDiluted: 'Ready to drink. Delicious grape flavor mix. Serve ice-cold.'
   },
@@ -52,8 +52,8 @@ const flavorsConfig = {
     rgb: '214, 48, 49',
     liquidColor: 0x6e0000, // Crimson red
     liquidColorDiluted: 0xbd0000, // Cherry red
-    primaryImg: 'assets/cherry_splash.png',
-    fallbackImg: 'assets/berries_grapes_splash.jpg',
+    primaryImg: 'assets/cherry_flavor_bg_1784850295519.png',
+    fallbackImg: 'assets/cherry_flavor_bg_1784850295519.png',
     directionsUndiluted: 'Mix 1 part C.I.P Cherry Concentrate with 5 parts cold water. Perfect for punch bowls and mocktails.',
     directionsDiluted: 'Ready to drink. Crisp and sweet cherry flavor. Best served chilled.'
   },
@@ -64,8 +64,8 @@ const flavorsConfig = {
     rgb: '236, 204, 104',
     liquidColor: 0xb58900, // Golden yellow-brown syrup
     liquidColorDiluted: 0xffd13b, // Translucent bright yellow
-    primaryImg: 'assets/pineapple_splash.png',
-    fallbackImg: 'assets/tropical_fruits_splash.jpg',
+    primaryImg: 'assets/pineapple_flavor_bg_1784850172270.png',
+    fallbackImg: 'assets/pineapple_flavor_bg_1784850172270.png',
     directionsUndiluted: 'Mix 1 part C.I.P Pineapple Concentrate with 5 parts chilled water. Serve with a slice of fresh pineapple.',
     directionsDiluted: 'Ready to drink. Tropical pineapple refresh. Best served chilled over ice.'
   },
@@ -76,8 +76,8 @@ const flavorsConfig = {
     rgb: '255, 165, 2',
     liquidColor: 0xb56b00, // Rich amber mango pulp syrup
     liquidColorDiluted: 0xffa500, // Translucent mango orange
-    primaryImg: 'assets/mango_splash.png',
-    fallbackImg: 'assets/tropical_fruits_splash.jpg',
+    primaryImg: 'assets/mango_flavor_bg_1784850162081.png',
+    fallbackImg: 'assets/mango_flavor_bg_1784850162081.png',
     directionsUndiluted: 'Mix 1 part C.I.P Mango Concentrate with 5 parts cold water. Blend with ice for a tropical mango slushy.',
     directionsDiluted: 'Ready to drink. Indulgent mango nectar flavor. Shake well, serve cold.'
   },
@@ -88,8 +88,8 @@ const flavorsConfig = {
     rgb: '255, 107, 129',
     liquidColor: 0x9e1233, // Deep tropical ruby red
     liquidColorDiluted: 0xe11d48, // Vibrant punch red
-    primaryImg: 'assets/fruit_punch_splash.png',
-    fallbackImg: 'assets/tropical_fruits_splash.jpg',
+    primaryImg: 'assets/fruit_punch_flavor_bg_1784850306863.png',
+    fallbackImg: 'assets/fruit_punch_flavor_bg_1784850306863.png',
     directionsUndiluted: 'Mix 1 part C.I.P Fruit Punch with 5 parts cold ginger ale or water. Garnish with lime slices.',
     directionsDiluted: 'Ready to drink. The ultimate tropical fruit punch. Serve chilled.'
   },
@@ -100,8 +100,8 @@ const flavorsConfig = {
     rgb: '255, 127, 80',
     liquidColor: 0xa8470a, // Rich amber kola syrup
     liquidColorDiluted: 0xff8c00, // Golden champagne amber
-    primaryImg: 'assets/kola_champagne_splash.png',
-    fallbackImg: 'assets/tropical_fruits_splash.jpg',
+    primaryImg: 'assets/kola_champagne_flavor_bg_1784850318567.png',
+    fallbackImg: 'assets/kola_champagne_flavor_bg_1784850318567.png',
     directionsUndiluted: 'Mix 1 part C.I.P Kola Champagne Concentrate with 5 parts sparkling club soda for that classic Caribbean taste.',
     directionsDiluted: 'Ready to drink. Sweet, sparkling-style kola champagne mix. Serve ice-cold.'
   },
@@ -112,8 +112,8 @@ const flavorsConfig = {
     rgb: '179, 57, 57',
     liquidColor: 0x4a0e17, // Very dark burgundy hibiscus syrup
     liquidColorDiluted: 0x8a1529, // Deep sorrel red
-    primaryImg: 'assets/sorrel_ginger_splash.png',
-    fallbackImg: 'assets/sorrel_ginger_splash.jpg',
+    primaryImg: 'assets/sorrel_ginger_flavor_bg_1784850332056.png',
+    fallbackImg: 'assets/sorrel_ginger_flavor_bg_1784850332056.png',
     directionsUndiluted: 'Mix 1 part C.I.P Sorrel & Ginger Concentrate with 5 parts water. Spice up with rum if desired. Serve cold.',
     directionsDiluted: 'Ready to drink. Spiced hibiscus sorrel and hot ginger blend. Serve chilled.'
   }
